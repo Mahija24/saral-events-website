@@ -27,7 +27,15 @@ import {
   TrendingUp,
   Globe,
   Headphones,
+  Store,
+  UserCheck,
+  Settings,
 } from "lucide-react"
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import QRCode from 'react-qr-code';
+
 
 // Add this right after the imports and before the useCountUp hook
 const SafeComponent = ({ children }) => {
@@ -91,8 +99,33 @@ const useCountUp = (end, duration = 2000, shouldStart = false) => {
 }
 
 export default function SaralEventsLanding() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+const images = [
+  '/images/Pictures/amit-kumar-ShO949vJwAg-unsplash.jpg',
+  '/images/Pictures/anuj-kumar-QF-qYrnGhnY-unsplash.jpg',
+  '/images/Pictures/wedding-sofa.jpg',
+  '/images/Pictures/photo5.jpg',
+];
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  }, 3000);
+  return () => clearInterval(interval);
+}, []);
+
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [showPopup, setShowPopup] = useState(false);
   const [isClient, setIsClient] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, []);
   const [formData, setFormData] = useState({
     businessName: "",
     email: "",
@@ -345,103 +378,105 @@ export default function SaralEventsLanding() {
   // Static data arrays - moved outside component to prevent SSR issues
   const features = [
     {
-      icon: Shield,
-      title: "Verified Vendors",
-      description: "All vendors are thoroughly verified and trusted",
+      icon: Zap,
+      title: "Budget Planner",
+      description: "Track all your event expenses effortlessly.",
       color: "from-blue-400 to-blue-600",
     },
     {
-      icon: Zap,
-      title: "Real-Time Booking",
-      description: "Instant booking confirmations and updates",
+      icon: Shield,
+      title: "Vendor Discovery",
+      description: "Find verified vendors with real ratings & reviews.",
       color: "from-green-400 to-green-600",
     },
     {
       icon: MessageCircle,
-      title: "Chat with Vendors",
-      description: "Direct communication with service providers",
-      color: "from-purple-400 to-purple-600",
-    },
-    {
-      icon: Filter,
-      title: "Custom Filters",
-      description: "Find exactly what you need with smart filters",
+      title: "Digital Invites",
+      description: "Send beautiful, customizable invites in seconds.",
       color: "from-pink-400 to-pink-600",
     },
     {
-      icon: Palette,
-      title: "Decor",
-      description: "Beautiful decoration services for any occasion",
-      color: "from-indigo-400 to-indigo-600",
+      icon: Filter,
+      title: "Checklist Manager",
+      description: "Stay organized with smart to-do lists.",
+      color: "from-purple-400 to-purple-600",
     },
     {
       icon: Camera,
-      title: "Photography",
-      description: "Professional photographers and videographers",
+      title: "Real-time Updates",
+      description: "Get instant alerts and vendor confirmations.",
       color: "from-red-400 to-red-600",
     },
     {
-      icon: Music,
-      title: "Music / Audio Video",
-      description: "Complete entertainment solutions",
-      color: "from-orange-400 to-orange-600",
-    },
-    {
       icon: Users,
-      title: "& More",
-      description: "Catering, venues, and many other services",
+      title: "Multiple Event Support",
+      description: "Manage multiple events without the mess.",
       color: "from-teal-400 to-teal-600",
     },
-  ]
+  ];  
 
   const categories = [
-    { name: "Wedding Planning", count: "1,200+ vendors", icon: "💒", gradient: "from-rose-100 to-pink-100" },
-    { name: "Birthday Parties", count: "800+ vendors", icon: "🎂", gradient: "from-yellow-100 to-orange-100" },
-    { name: "Corporate Events", count: "600+ vendors", icon: "🏢", gradient: "from-blue-100 to-indigo-100" },
-    { name: "Photography", count: "1,500+ vendors", icon: "📸", gradient: "from-purple-100 to-violet-100" },
-    { name: "Catering", count: "900+ vendors", icon: "🍽️", gradient: "from-green-100 to-emerald-100" },
-    { name: "Decoration", count: "700+ vendors", icon: "🎨", gradient: "from-pink-100 to-rose-100" },
-    { name: "Entertainment", count: "500+ vendors", icon: "🎭", gradient: "from-indigo-100 to-blue-100" },
-    { name: "Venues", count: "300+ vendors", icon: "🏛️", gradient: "from-gray-100 to-slate-100" },
-  ]
+    {
+      name: "The Bliss Hall",
+      description: "Affordable event venue in your city",
+      bgImage: "/images/Pictures/sevices.webp",
+    },
+    {
+      name: "SnapStudio",
+      description: "Professional wedding & event photographers",
+      bgImage: "/images/Pictures/ailbhe-flynn-jkZs3Oi9pq0-unsplash.jpg",
+    },
+    {
+      name: "Tasty Bites",
+      description: "Catering service for all budgets",
+      bgImage: "/images/Pictures/saile-ilyas-SiwrpBnxDww-unsplash.jpg",
+    },
+    {
+      name: "Bloom Decor",
+      description: "Elegant décor for weddings & parties",
+      bgImage: "/images/Pictures/photo3.png",
+    },
+    {
+      name: "DJ Rhythm",
+      description: "High-energy DJ services for your celebration",
+      bgImage: "/images/Pictures/images.jpeg",
+    },
+    {
+      name: "GlamByRia",
+      description: "Makeup artist for bridal & party looks",
+      bgImage: "/images/Pictures/skg-photography-O2HNmD4W43E-unsplash.jpg",
+    },
+  ];
+  
+  
 
   const stats = [
-    { number: "5,000+", label: "Vendors Listed", icon: Users, color: "from-blue-500 to-blue-600", value: count1 },
+    { number: "5,000+", label: "Events Managed", icon: Users, color: "from-blue-500 to-blue-600", value: count1 },
     { number: "20+", label: "Cities Covered", icon: Globe, color: "from-green-500 to-green-600", value: count2 },
-    { number: "10,000", label: "Events Supported", icon: Award, color: "from-purple-500 to-purple-600", value: count3 },
+    { number: "10,000", label: "Verified Vendors", icon: Award, color: "from-purple-500 to-purple-600", value: count3 },
     { number: "4.8★", label: "App Rating", icon: Star, color: "from-yellow-500 to-yellow-600", value: count4 },
   ]
 
   const faqs = [
     {
-      question: "How do I book a vendor through Saral Events?",
+      question: "How do I start planning my event?",
       answer:
-        "Simply download our app, browse through verified vendors in your category, compare prices and reviews, then book directly through the app. You'll receive instant confirmation and can track your booking status in real-time.",
+        "Simply download our app, choose your event type, and follow the guided setup to get started.",
     },
     {
-      question: "Are all vendors verified on your platform?",
+      question: "Are the vendors verified?",
       answer:
-        "Yes, absolutely! Every vendor goes through our rigorous verification process including background checks, license verification, portfolio review, and customer feedback analysis before being approved on our platform.",
+        "Yes! All vendors are verified and reviewed by real customers",
     },
     {
-      question: "What payment methods do you accept?",
+      question: "Can I use Saral Events for free?",
       answer:
-        "We accept all major payment methods including credit/debit cards, UPI, net banking, and digital wallets. All payments are secure and processed through encrypted channels.",
+        "Absolutely. The core features of the app are free to use for all customers.",
     },
     {
-      question: "Can I cancel or modify my booking?",
+      question: "I’m a vendor. How do I register?",
       answer:
-        "Yes, you can cancel or modify your booking based on the vendor's cancellation policy. Most vendors allow free cancellation up to 48 hours before the event. Check individual vendor policies for specific terms.",
-    },
-    {
-      question: "How do you ensure service quality?",
-      answer:
-        "We maintain quality through vendor verification, customer reviews, regular quality audits, and a dedicated support team. If you're not satisfied, we have a resolution process to address any issues.",
-    },
-    {
-      question: "Is there a booking fee?",
-      answer:
-        "Saral Events is free to use for customers. We charge a small commission to vendors only when they receive confirmed bookings. There are no hidden fees for users.",
+        "Scroll down to the vendor form and submit your details to join our network.",
     },
   ]
 
@@ -663,179 +698,327 @@ export default function SaralEventsLanding() {
         </nav>
 
         {/* Hero Section with Enhanced Design */}
-        <section
-          id="hero"
-          className="relative bg-gradient-to-br from-yellow-50 via-orange-50 to-amber-50 py-20 overflow-hidden"
-        >
-          {/* Background decorative elements */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-yellow-200/30 to-orange-200/30 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-amber-200/30 to-yellow-200/30 rounded-full blur-3xl"></div>
+        <section id="hero" className="relative h-screen overflow-hidden">
+  {/* 🔥 Background Carousel */}
+  <div className="absolute inset-0 z-0">
+  {images.map((url, index) => (
+      <div
+        key={index}
+        className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ${
+          index === currentIndex ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ backgroundImage: `url(${url})` }}
+      />
+    ))}
+  </div>
+
+  {/* 🔥 Overlay */}
+  <div className="absolute inset-0 bg-black/40 z-10"></div>
+
+  {/* 🔥 Foreground Content */}
+  <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+    <div className="grid lg:grid-cols-2 gap-12 items-center">
+      {/* Left */}
+      <div className="space-y-8">
+        <div className="inline-flex items-center px-4 py-2 bg-white/70 backdrop-blur-sm rounded-full text-sm font-medium text-yellow-700 border border-yellow-200">
+          <Star className="w-4 h-4 mr-2 text-yellow-500" />
+          India's #1 Event Planning Platform
+        </div>
+        <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+          Plan{' '}
+          <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+            Less
+          </span>
+          <br />
+          Celebrate{' '}
+          <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+            More
+          </span>
+        </h1>
+        <p className="text-xl text-white/90">
+          Book trusted vendors, manage budgets, guest lists, and celebrate stress-free.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4">
+          <button
+            onClick={() => handleAppDownload('android')}
+            className="group bg-gradient-to-r from-yellow-600 to-orange-600 text-white px-8 py-4 rounded-xl font-semibold hover:scale-105 transition-all flex items-center"
+          >
+            <Download className="mr-2 h-5 w-5 group-hover:animate-bounce" />
+            Download App
+          </button>
+          <button
+            onClick={() => scrollToSection('categories')}
+            className="group border-2 border-yellow-600 text-yellow-600 px-8 py-4 rounded-xl font-semibold hover:bg-yellow-600 hover:text-white transition-all flex items-center"
+          >
+            <ArrowRight className="mr-2 h-5 w-5" />
+            Explore Vendors
+          </button>
+        </div>
+
+        <div className="flex space-x-8 pt-4">
+          <div className="text-center">
+            <div className="text-2xl font-bold text-white">5K+</div>
+            <div className="text-sm text-white/80">Vendors</div>
           </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-white">20+</div>
+            <div className="text-sm text-white/80">Cities</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-white">4.8★</div>
+            <div className="text-sm text-white/80">Rating</div>
+          </div>
+        </div>
+      </div>
 
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-8">
-                <div className="space-y-4">
-                  <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full text-sm font-medium text-yellow-700 border border-yellow-200">
-                    <Star className="w-4 h-4 mr-2 text-yellow-500" />
-                    India's #1 Event Planning Platform
-                  </div>
-                  <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
-                    Plan{" "}
-                    <span className="bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
-                      Less
-                    </span>
-                    <br />
-                    Celebrate{" "}
-                    <span className="bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
-                      More
-                    </span>
-                  </h1>
-                  <p className="text-xl text-gray-600 leading-relaxed">
-                    Your one-stop solution for all event planning needs. Connect with verified vendors, book services
-                    instantly, and make your celebrations unforgettable.
-                  </p>
-                </div>
+      {/* QR Code Box */}
+      <div className="flex justify-center">
+      <div className="relative bg-white/20 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/30 w-[320px]">
+  <div className="text-center mb-4">
+    <div
+      className="mx-auto mb-3 w-48 h-48 bg-white/70 rounded-2xl flex items-center justify-center transition-transform duration-300 hover:scale-105 shadow-md"
+      onClick={handleQRScan}
+    >
+      <QRCode
+        value="https://play.google.com/store/apps/details?id=com.yourapp"
+        size={180}
+        fgColor="#000000"
+        bgColor="#ffffff"
+        className="rounded-2xl" // More rounded
+      />
+    </div>
+    <p className="text-sm font-semibold text-gray-800 tracking-wide">
+      SCAN TO DOWNLOAD
+    </p>
+  </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <button
-                    onClick={() => handleAppDownload("android")}
-                    className="group bg-gradient-to-r from-yellow-600 to-orange-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-yellow-700 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
-                  >
-                    <Download className="mr-2 h-5 w-5 group-hover:animate-bounce" />
-                    Download App
-                  </button>
-                  <button
-                    onClick={() => scrollToSection("categories")}
-                    className="group border-2 border-yellow-600 text-yellow-600 px-8 py-4 rounded-xl font-semibold hover:bg-yellow-600 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center"
-                  >
-                    <ArrowRight className="mr-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                    Explore Vendors
-                  </button>
-                </div>
+  <div className="flex gap-3 justify-center">
+    {/* App Store Button */}
+    <button
+    onClick={() => handleAppDownload('ios')}
+    className="flex items-center bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition-transform duration-300 hover:scale-105 shadow-md"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      fill="white"
+      viewBox="0 0 384 512"
+      className="mr-3"
+    >
+      <path d="M318.7 268.7c-1.3-60.2 49.1-88.9 51.3-90.2-28-41-71.5-46.6-86.9-47.1-37-3.7-72.2 21.6-91 21.6-18.7 0-47.8-21-78.7-20.4-40.5.6-78 23.6-98.9 59.8-42.3 73.4-10.8 181.8 30.4 241.3 20.2 29.2 44.2 61.9 75.7 60.7 30.2-1.2 41.6-19.7 77.9-19.7 36.3 0 46.1 19.7 78.1 19.1 32.3-.6 52.7-29.9 72.8-59 23-33.4 32.5-65.8 32.8-67.5-.7-.3-62.6-24-63.4-95.6zM255.3 91c16.8-20.4 28.1-48.8 25-77.3-24.2 1-53.5 16.1-70.7 36.4-15.5 18.1-29.2 47.2-25.5 74.9 27.1 2.1 54.5-13.8 71.2-34z"/>
+    </svg>
+    <div className="text-left">
+      <div className="text-xs">Download on</div>
+      <div className="text-sm font-semibold">App Store</div>
+    </div>
+  </button>
 
-                <div className="flex items-center space-x-8 pt-4">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-900">5K+</div>
-                    <div className="text-sm text-gray-600">Vendors</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-900">20+</div>
-                    <div className="text-sm text-gray-600">Cities</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-900">4.8★</div>
-                    <div className="text-sm text-gray-600">Rating</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex justify-center">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-3xl blur-2xl opacity-20 transform rotate-6"></div>
-                  <div className="relative bg-white/90 backdrop-blur-sm p-8 rounded-3xl shadow-2xl border border-white/50">
-                    <div className="text-center mb-6">
-                    <div
-  className="mx-auto mb-2 w-48 h-48 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex items-center justify-center cursor-pointer hover:from-gray-100 hover:to-gray-200 transition-all duration-300 transform hover:scale-105 shadow-inner"
-  onClick={handleQRScan}
+  {/* Google Play Button */}
+  <button
+  onClick={() => handleAppDownload('android')}
+  className="flex items-center bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition-transform duration-300 hover:scale-105 shadow-md"
 >
-                        <div className="text-6xl animate-pulse">📱</div>
-                      </div>
-                      <p className="text-sm font-semibold text-gray-700 mb-4 tracking-wide">SCAN TO DOWNLOAD</p>
-                    </div>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="22"
+    height="22"
+    viewBox="0 0 512 512"
+    className="mr-3"
+  >
+    <path
+      fill="#FFD400"
+      d="M325.3 234.3 104.8 26.6C96.3 18.9 83 25.1 83 36.9v438.2c0 11.8 13.3 18 21.8 10.3l220.5-207.7c9.6-9 9.6-24.1 0-33.1z"
+    />
+    <path
+      fill="#FF3333"
+      d="M361.7 256 422.6 199.3c13.4-12.5 13.4-32.6 0-45.1l-60.9-56.7c-8.9-8.3-22.7-1.9-22.7 10.3v138c0 12.2 13.8 18.6 22.7 10.2z"
+    />
+    <path
+      fill="#48FF48"
+      d="M361.7 256v.1l60.8 56.7c13.4 12.5 13.4 32.6 0 45.1l-60.9 56.7c-8.9 8.3-22.7 1.9-22.7-10.3V266.2c0-12.2 13.8-18.6 22.7-10.2z"
+    />
+    <path
+      fill="#3BCCFF"
+      d="m325.3 277.7-220.5 207.7c-8.5 7.7-21.8 1.5-21.8-10.3V36.9c0-11.8 13.3-18 21.8-10.3l220.5 207.7c9.6 9 9.6 24.1 0 33.1z"
+    />
+  </svg>
 
-                    <div className="flex gap-3">
-                      <AppStoreButton platform="ios" onClick={() => handleAppDownload("ios")} />
-                      <AppStoreButton platform="android" onClick={() => handleAppDownload("android")} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+  <div className="text-left">
+    <div className="text-xs">Get it on</div>
+    <div className="text-sm font-semibold">Google Play</div>
+  </div>
+</button>
+  </div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+{/* usp section */}
+<section className="py-16 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+      What makes us different?
+    </h2>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {/* USP 1 */}
+      <div className="bg-blue-600 rounded-2xl p-8 text-center text-white hover:scale-105 transition transform shadow-md">
+        <div className="text-5xl mb-4">⚡</div>
+        <h3 className="text-xl font-semibold mb-2">Instant Booking</h3>
+        <p className="mb-6">Book vendors instantly without any hassle.</p>
+      </div>
+
+      {/* USP 2 */}
+      <div className="bg-rose-500 rounded-2xl p-8 text-center text-white hover:scale-105 transition transform shadow-md">
+        <div className="text-5xl mb-4">📍</div>
+        <h3 className="text-xl font-semibold mb-2">Vendor Status Tracking</h3>
+        <p className="mb-6">Track the real-time status of your vendors after booking.</p>
+      </div>
+
+      {/* USP 3 */}
+      <div className="bg-amber-500 rounded-2xl p-8 text-center text-white hover:scale-105 transition transform shadow-md">
+        <div className="text-5xl mb-4">💌</div>
+        <h3 className="text-xl font-semibold mb-2">Custom Invitations</h3>
+        <p className="mb-6">Design and send customized invitations effortlessly.</p>
+      </div>
+
+      {/* USP 4 */}
+      <div className="bg-green-600 rounded-2xl p-8 text-center text-white hover:scale-105 transition transform shadow-md">
+        <div className="text-5xl mb-4">🧮</div>
+        <h3 className="text-xl font-semibold mb-2">Budget Calculator</h3>
+        <p className="mb-6">Plan your budget easily with our smart calculator.</p>
+      </div>
+
+      {/* USP 5 */}
+      <div className="bg-purple-600 rounded-2xl p-8 text-center text-white hover:scale-105 transition transform shadow-md">
+        <div className="text-5xl mb-4">✅</div>
+        <h3 className="text-xl font-semibold mb-2">Trusted & Verified Vendors</h3>
+        <p className="mb-6">Work only with verified and reliable vendors.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
         {/* Enhanced Features Section */}
-        <section id="features" className="py-20 bg-white relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full text-sm font-medium text-yellow-700 mb-4">
-                <Zap className="w-4 h-4 mr-2" />
-                Everything You Need
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Comprehensive Event Planning Tools</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                From vendor discovery to booking management, we've got every aspect of your event planning covered
-              </p>
-            </div>
+        <section id="features" className="py-20 bg-neutral-50 relative">
+  <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white"></div>
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Section Heading */}
+    <div className="text-center mb-16">
+      <div className="inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full text-sm font-medium text-yellow-700 mb-4">
+        <Zap className="w-4 h-4 mr-2" />
+        Everything You Need
+      </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="group relative bg-white p-8 rounded-2xl border border-gray-100 hover:border-yellow-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2"
-                  onClick={() => alert(`Learn more about ${feature.title} - This would open detailed information.`)}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-50/50 to-orange-50/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative">
-                    <div
-                      className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      <feature.icon className="h-8 w-8 text-white" />
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-yellow-600 transition-colors">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+      {/* Optional Subtitle */}
+      <p className="text-sm uppercase tracking-widest text-yellow-600 font-semibold mb-2">
+        Comprehensive Event Planning Tools
+      </p>
+
+      {/* Main Heading */}
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        All-in-One Event Planning, Made Simple
+      </h2>
+
+      <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        Whether it's a wedding, birthday, or corporate event, Saral Events has everything you need in one app.
+      </p>
+    </div>
+
+    {/* Features Grid */}
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map((feature, index) => (
+        <div
+          key={index}
+          className="group relative bg-white p-8 rounded-2xl border border-gray-100 hover:border-yellow-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2 flex flex-col items-center gap-6"
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-yellow-50/50 to-orange-50/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          {/* Icon */}
+          <div
+            className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+          >
+            <feature.icon className="h-8 w-8 text-white" />
           </div>
-        </section>
+
+          {/* Text Content */}
+          <div className="text-center">
+            <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-yellow-600 transition-colors">
+              {feature.title}
+            </h3>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              {feature.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
 
         {/* Enhanced Categories Section */}
         <section id="categories" className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-yellow-50/30 to-orange-50/30"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full text-sm font-medium text-yellow-700 mb-4 border border-yellow-200">
-                <Filter className="w-4 h-4 mr-2" />
-                Browse by Category
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Find Perfect Vendors</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Discover specialized vendors for your specific event needs across multiple categories
-              </p>
-            </div>
+  <div className="absolute inset-0 bg-gradient-to-r from-yellow-50/30 to-orange-50/30"></div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {categories.map((category, index) => (
-                <div
-                  key={index}
-                  className={`group relative bg-gradient-to-br ${category.gradient} p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2 border border-white/50`}
-                  onClick={() => handleCategoryClick(category.name)}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative">
-                    <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                      {category.icon}
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-yellow-700 transition-colors">
-                      {category.name}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-4">{category.count}</p>
-                    <div className="flex items-center justify-end text-yellow-600 group-hover:text-yellow-700 transition-colors">
-                      <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                </div>
-              ))}
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Heading */}
+    <div className="text-center mb-16">
+      <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full text-sm font-medium text-yellow-700 mb-4 border border-yellow-200">
+        <Filter className="w-4 h-4 mr-2" />
+        Browse by Category
+      </div>
+
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Find Trusted Vendors Near You
+      </h2>
+
+      <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        Explore our curated list of top-rated decorators, caterers, photographers, venues, and more – all verified and reviewed by customers.
+      </p>
+    </div>
+
+    {/* Vendor Cards */}
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {categories.map((category, index) => (
+        <div
+          key={index}
+          className={`group relative p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2 border border-white/50
+          flex flex-col items-center justify-center min-h-[230px] gap-4`}
+          style={{
+            backgroundImage: `url(${category.bgImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
+          {/* Overlay for readability */}
+          <div className="absolute inset-0 bg-black/40 rounded-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-500"></div>
+
+          {/* Content */}
+          <div className="relative flex flex-col items-center text-center z-10">
+            <div className="text-5xl mb-2 group-hover:scale-110 transition-transform duration-300">
+              {category.icon}
             </div>
+            <h3 className="text-lg font-bold text-white mb-1 group-hover:text-yellow-300 transition-colors">
+              {category.name}
+            </h3>
+            <p className="text-sm text-white/90">{category.description}</p>
           </div>
-        </section>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
+
 
         {/* Enhanced Stats Section */}
         <section
@@ -856,7 +1039,7 @@ export default function SaralEventsLanding() {
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Built for Big Moments</h2>
               <p className="text-xl text-yellow-100 max-w-3xl mx-auto">
-                Trusted by thousands for their most important celebrations and events
+              Trusted by Thousands of Happy Customers
               </p>
             </div>
 
@@ -964,9 +1147,10 @@ export default function SaralEventsLanding() {
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Get in Touch
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">We’d Love to Hear from You
+              </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Have questions or need assistance? We're here to help make your event planning journey smooth
+              Have questions or need support? Fill the form or reach out via email/WhatsApp.
               </p>
             </div>
 
@@ -1102,37 +1286,47 @@ export default function SaralEventsLanding() {
 
         {/* Call to Action */}
         <section className="py-20 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 relative overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
-          </div>
+  <div className="absolute inset-0">
+    <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+    <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+  </div>
 
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Plan Your Next Event?</h2>
-            <p className="text-xl text-yellow-100 mb-12 max-w-3xl mx-auto">
-              Join thousands of satisfied customers who trust Saral Events for their special occasions. Start exploring
-              vendors in your city today.
-            </p>
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    {/* ✅ New Main Heading */}
+    <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+      Your Perfect Event Starts Here
+    </h2>
 
-            <div className="flex flex-col lg:flex-row gap-8 justify-center items-center">
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-                <div
-                  className="w-40 h-40 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4 cursor-pointer hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
-                  onClick={handleQRScan}
-                >
-                  <div className="text-6xl animate-pulse">📱</div>
-                </div>
-                <p className="text-sm font-semibold text-white tracking-wide">SCAN TO DOWNLOAD</p>
-              </div>
+    {/* ✅ Existing Heading */}
+    <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+      Ready to Plan Your Next Event?
+    </h3>
 
-              <div className="flex flex-col gap-4">
-                <AppStoreButton platform="ios" onClick={() => handleAppDownload("ios")} />
-                <AppStoreButton platform="android" onClick={() => handleAppDownload("android")} />
-                <p className="text-yellow-100 text-sm mt-2">Free to download • No hidden charges</p>
-              </div>
-            </div>
-          </div>
-        </section>
+    {/* ✅ Updated Subheading */}
+    <p className="text-xl text-yellow-100 mb-12 max-w-3xl mx-auto">
+      Download Saral Events today and take the stress out of celebrations. 
+    </p>
+
+    <div className="flex flex-col lg:flex-row gap-8 justify-center items-center">
+      <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+        <div
+          className="w-40 h-40 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4 cursor-pointer hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
+          onClick={handleQRScan}
+        >
+          <div className="text-6xl animate-pulse">📱</div>
+        </div>
+        <p className="text-sm font-semibold text-white tracking-wide">SCAN TO DOWNLOAD</p>
+      </div>
+
+      <div className="flex flex-col gap-4">
+        <AppStoreButton platform="ios" onClick={() => handleAppDownload("ios")} />
+        <AppStoreButton platform="android" onClick={() => handleAppDownload("android")} />
+        <p className="text-yellow-100 text-sm mt-2">Free to download • No hidden charges</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
         {/* Enhanced Vendor Registration */}
         <section id="vendor-registration" className="py-20 bg-white">
@@ -1144,19 +1338,19 @@ export default function SaralEventsLanding() {
                     <Users className="w-4 h-4 mr-2" />
                     For Business Partners
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Join Our Vendor Network</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Join Our Growing Vendor Network
+                  </h2>
                   <p className="text-xl text-gray-600 leading-relaxed">
-                    Grow your business by connecting with customers who need your services. Register as a vendor and
-                    start receiving bookings today.
+                  Are you a decorator, caterer, DJ, photographer, or venue owner? Connect with thousands of customers actively planning events in your area.
                   </p>
                 </div>
 
                 <div className="space-y-6">
                   {[
-                    { icon: TrendingUp, text: "Reach thousands of potential customers daily" },
-                    { icon: Zap, text: "Manage bookings and payments with ease" },
-                    { icon: Star, text: "Build your reputation with customer reviews" },
-                    { icon: Award, text: "Get featured as a top-rated vendor" },
+                    {  icon: Store, text: "Free Vendor Listing" },
+                    {icon: UserCheck, text: "Verified Customer Leads" },
+                    {  icon: Settings, text: "In-App Business Management" },
+                    {  icon: Star, text: "Customer Reviews & Ratings"  },
                   ].map((benefit, index) => (
                     <div key={index} className="flex items-center group">
                       <div className="w-8 h-8 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
@@ -1221,7 +1415,7 @@ export default function SaralEventsLanding() {
                     disabled={isSubmitting}
                     className="w-full bg-gradient-to-r from-yellow-600 to-orange-600 text-white py-4 rounded-xl font-semibold hover:from-yellow-700 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
                   >
-                    {isSubmitting ? "Submitting..." : "Get Started Today"}
+                    {isSubmitting ? "Submitting..." : "Register as Vendor"}
                   </button>
                 </form>
                 {submitMessage && (
@@ -1239,128 +1433,63 @@ export default function SaralEventsLanding() {
         </section>
 
         {/* Enhanced Footer */}
-        <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-16 relative overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-yellow-600/10 to-orange-600/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-amber-600/10 to-yellow-600/10 rounded-full blur-3xl"></div>
-          </div>
+        <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-10 relative overflow-hidden">
+  <div className="absolute inset-0">
+    <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-yellow-600/10 to-orange-600/10 rounded-full blur-3xl"></div>
+    <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-amber-600/10 to-yellow-600/10 rounded-full blur-3xl"></div>
+  </div>
 
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-              <div className="space-y-6">
-                <img src="/images/saral-logo.png" alt="Saral Events" className="h-20 w-auto" />
-                <p className="text-gray-400 leading-relaxed">
-                  Making event planning simple and celebrations memorable. Your trusted partner for all occasions.
-                </p>
-                <div className="flex space-x-4">
-                  {[
-                    { platform: "facebook", url: "https://facebook.com/saralevents", icon: "f" },
-                    { platform: "twitter", url: "https://twitter.com/saralevents", icon: "t" },
-                    { platform: "linkedin", url: "https://linkedin.com/company/saralevents", icon: "in" },
-                    { platform: "instagram", url: "https://instagram.com/saralevents", icon: "ig" },
-                  ].map((social, index) => (
-                    <button
-                      key={index}
-                      onClick={() => isClient && window.open(social.url, "_blank")}
-                      className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-gradient-to-r hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-110"
-                    >
-                      <span className="text-sm font-bold">{social.icon}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col items-center justify-center space-y-4">
+      {/* Logo */}
+      <img src="/images/saral-logo.png" alt="Saral Events" className="h-20 w-auto" />
 
-              <div>
-                <h3 className="text-lg font-bold mb-6 text-white">Services</h3>
-                <ul className="space-y-3 text-gray-400">
-                  {["Wedding Planning", "Photography", "Catering", "Decoration", "Entertainment", "Venues"].map(
-                    (service, index) => (
-                      <li key={index}>
-                        <button
-                          onClick={() => handleCategoryClick(service)}
-                          className="hover:text-yellow-400 transition-colors text-left group flex items-center"
-                        >
-                          <ChevronRight className="h-4 w-4 mr-2 group-hover:translate-x-1 transition-transform" />
-                          {service}
-                        </button>
-                      </li>
-                    ),
-                  )}
-                </ul>
-              </div>
+      {/* Slogan */}
+      <p className="text-gray-400 text-center">Making Every Celebration Saral.</p>
 
-              <div>
-                <h3 className="text-lg font-bold mb-6 text-white">Company</h3>
-                <ul className="space-y-3 text-gray-400">
-                  {[
-                    { name: "About Us", action: () => alert("About Us - Learn more about Saral Events") },
-                    { name: "Contact", action: () => scrollToSection("contact") },
-                    { name: "Careers", action: () => alert("Careers - Join our team!") },
-                    { name: "Press", action: () => alert("Press - Latest news and updates") },
-                    { name: "Blog", action: () => alert("Blog - Event planning tips and guides") },
-                  ].map((item, index) => (
-                    <li key={index}>
-                      <button
-                        onClick={item.action}
-                        className="hover:text-yellow-400 transition-colors text-left group flex items-center"
-                      >
-                        <ChevronRight className="h-4 w-4 mr-2 group-hover:translate-x-1 transition-transform" />
-                        {item.name}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+      {/* Contact Info */}
+      <div className="flex flex-col sm:flex-row items-center gap-4 text-gray-400">
+        <button
+          onClick={() => handlePhoneCall("+91-98765-43210")}
+          className="flex items-center hover:text-yellow-400 transition-colors group"
+        >
+          <Phone className="h-4 w-4 mr-2 group-hover:animate-pulse" />
+          <span>+91-98765-43210</span>
+        </button>
+        <button
+          onClick={() => handleEmail("info@saralevents.com")}
+          className="flex items-center hover:text-yellow-400 transition-colors group"
+        >
+          <Mail className="h-4 w-4 mr-2 group-hover:animate-pulse" />
+          <span>info@saralevents.com</span>
+        </button>
+      </div>
 
-              <div>
-                <h3 className="text-lg font-bold mb-6 text-white">Support</h3>
-                <ul className="space-y-3 text-gray-400">
-                  {[
-                    { name: "Help Center", action: () => scrollToSection("faq") },
-                    { name: "Privacy Policy", action: () => alert("Privacy Policy - How we protect your data") },
-                    { name: "Terms of Service", action: () => alert("Terms of Service - User agreement") },
-                    { name: "Vendor Guidelines", action: () => alert("Vendor Guidelines - Rules for vendors") },
-                    { name: "Refund Policy", action: () => alert("Refund Policy - Our refund terms") },
-                  ].map((item, index) => (
-                    <li key={index}>
-                      <button
-                        onClick={item.action}
-                        className="hover:text-yellow-400 transition-colors text-left group flex items-center"
-                      >
-                        <ChevronRight className="h-4 w-4 mr-2 group-hover:translate-x-1 transition-transform" />
-                        {item.name}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+      {/* Social Icons */}
+      <div className="flex space-x-4 pt-2">
+        {[
+          { platform: "facebook", url: "https://facebook.com/saralevents", icon: "f" },
+          { platform: "twitter", url: "https://twitter.com/saralevents", icon: "t" },
+          { platform: "linkedin", url: "https://linkedin.com/company/saralevents", icon: "in" },
+          { platform: "instagram", url: "https://instagram.com/saralevents", icon: "ig" },
+        ].map((social, index) => (
+          <button
+            key={index}
+            onClick={() => isClient && window.open(social.url, "_blank")}
+            className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-gradient-to-r hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105"
+          >
+            <span className="text-sm font-bold">{social.icon}</span>
+          </button>
+        ))}
+      </div>
 
-            <div className="border-t border-gray-700 pt-8">
-              <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
-                <p className="text-gray-400 text-center lg:text-left">
-                  &copy; 2024 Saral Events. All rights reserved. Plan Less, Celebrate More.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-8 text-gray-400">
-                  <button
-                    onClick={() => handlePhoneCall("+91-98765-43210")}
-                    className="flex items-center hover:text-yellow-400 transition-colors group"
-                  >
-                    <Phone className="h-4 w-4 mr-2 group-hover:animate-pulse" />
-                    <span>+91-98765-43210</span>
-                  </button>
-                  <button
-                    onClick={() => handleEmail("info@saralevents.com")}
-                    className="flex items-center hover:text-yellow-400 transition-colors group"
-                  >
-                    <Mail className="h-4 w-4 mr-2 group-hover:animate-pulse" />
-                    <span>info@saralevents.com</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      {/* Copyright */}
+      <p className="text-gray-500 text-center pt-2">
+        &copy; 2025 Saral Events. All rights reserved.
+      </p>
+    </div>
+  </div>
+</section>
       </div>
     </SafeComponent>
   )
