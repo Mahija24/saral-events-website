@@ -100,6 +100,7 @@ const useCountUp = (end, duration = 2000, shouldStart = false) => {
 
 export default function SaralEventsLanding() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  
 
 const images = [
   '/images/Pictures/amit-kumar-ShO949vJwAg-unsplash.jpg',
@@ -699,11 +700,11 @@ useEffect(() => {
         </nav>
         <section id="hero" className="relative min-h-screen overflow-x-hidden">
   {/* 🔥 Background Carousel */}
-  <div className="absolute inset-0 z-0">
+  <div className="absolute inset-0 z-0 pointer-events-none">
     {images.map((url, index) => (
       <div
         key={index}
-        className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ${
+        className={`absolute inset-0 w-full h-full bg-black bg-cover bg-center transition-opacity duration-1000 will-change-opacity ${
           index === currentIndex ? 'opacity-100' : 'opacity-0'
         }`}
         style={{ backgroundImage: `url(${url})` }}
@@ -769,58 +770,57 @@ useEffect(() => {
 
       {/* QR Code Box */}
       <div className="flex justify-center px-4 sm:px-0">
-  <div className="relative bg-white/20 backdrop-blur-lg p-6 rounded-3xl shadow-xl border border-white/30 w-full max-w-sm sm:max-w-md">
-    
-    {/* QR Code */}
-    <div className="text-center mb-4">
-      <div
-        className="mx-auto mb-4 w-48 h-48 bg-white/80 rounded-2xl flex items-center justify-center transition-transform duration-300 hover:scale-105 shadow-md"
-        onClick={handleQRScan}
-      >
-        <QRCode
-          value="https://play.google.com/store/apps/details?id=com.yourapp"
-          size={160}
-          fgColor="#000000"
-          bgColor="#ffffff"
-          className="rounded-lg"
-        />
+        <div className="relative bg-white/20 backdrop-blur-lg p-6 rounded-3xl shadow-xl border border-white/30 w-full max-w-sm sm:max-w-md">
+          {/* QR Code */}
+          <div className="text-center mb-4">
+            <div
+              className="mx-auto mb-4 w-48 h-48 bg-white/80 rounded-2xl flex items-center justify-center transition-transform duration-300 hover:scale-105 shadow-md"
+              onClick={handleQRScan}
+            >
+              <QRCode
+                value="https://play.google.com/store/apps/details?id=com.yourapp"
+                size={160}
+                fgColor="#000000"
+                bgColor="#ffffff"
+                className="rounded-lg"
+              />
+            </div>
+            <p className="text-base font-semibold text-gray-800 tracking-wide">
+              SCAN TO DOWNLOAD
+            </p>
+          </div>
+
+          {/* Official Store Badges */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <a
+              href="https://apps.apple.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                alt="Download on the App Store"
+                className="h-12 sm:h-14"
+              />
+            </a>
+            <a
+              href="https://play.google.com/store"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                alt="Get it on Google Play"
+                className="h-12 sm:h-14"
+              />
+            </a>
+          </div>
+        </div>
       </div>
-      <p className="text-base font-semibold text-gray-800 tracking-wide">
-        SCAN TO DOWNLOAD
-      </p>
-    </div>
-
-    {/* Official Store Badges */}
-    <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-      <a
-        href="https://apps.apple.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-          alt="Download on the App Store"
-          className="h-12 sm:h-14"
-        />
-      </a>
-      <a
-        href="https://play.google.com/store"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-          alt="Get it on Google Play"
-          className="h-12 sm:h-14"
-        />
-      </a>
-    </div>
-  </div>
-</div>
-
     </div>
   </div>
 </section>
+
 
 
 
@@ -892,7 +892,8 @@ useEffect(() => {
         <div
           key={idx}
           className={`${usp.color} rounded-2xl p-8 text-center text-white transition-all transform shadow-md min-h-[260px] sm:min-h-[220px]
-          scale-[1.02] lg:scale-100 lg:hover:scale-[1.05] hover:shadow-xl hover:z-10 duration-300`}
+scale-[1.05] shadow-xl z-10 lg:scale-100 lg:shadow-md lg:z-0 lg:hover:scale-[1.05] lg:hover:shadow-xl lg:hover:z-10 duration-300`}
+
         >
           <div className="mb-4 flex justify-center">{usp.icon}</div>
           <h3 className="text-xl font-semibold mb-2">{usp.title}</h3>
@@ -906,6 +907,7 @@ useEffect(() => {
         <section id="features" className="py-20 bg-neutral-50 relative">
   <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white"></div>
   <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
     {/* Section Heading */}
     <div className="text-center mb-16">
       <div className="inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full text-sm font-medium text-yellow-700 mb-4">
@@ -913,12 +915,10 @@ useEffect(() => {
         Everything You Need
       </div>
 
-      {/* Optional Subtitle */}
       <p className="text-sm uppercase tracking-widest text-yellow-600 font-semibold mb-2">
         Comprehensive Event Planning Tools
       </p>
 
-      {/* Main Heading */}
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
         All-in-One Event Planning, Made Simple
       </h2>
@@ -933,23 +933,28 @@ useEffect(() => {
       {features.map((feature, index) => (
         <div
           key={index}
-          className="group relative bg-white p-8 rounded-2xl border border-gray-100 hover:border-yellow-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2 flex flex-col items-center gap-6"
+          className="group relative bg-gradient-to-br from-yellow-50/50 to-orange-50/50 p-8 rounded-2xl border border-yellow-100 shadow-2xl -translate-y-2 
+          lg:bg-white lg:border-gray-100 lg:shadow-none lg:translate-y-0 
+          lg:hover:bg-gradient-to-br lg:hover:from-yellow-50/50 lg:hover:to-orange-50/50 
+          lg:hover:border-yellow-200 lg:hover:shadow-2xl lg:hover:-translate-y-2 
+          transition-all duration-500 cursor-pointer flex flex-col items-center gap-6"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-yellow-50/50 to-orange-50/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          {/* Background Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-yellow-50/50 to-orange-50/50 rounded-2xl opacity-100 
+          lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500"></div>
 
           {/* Icon */}
-          <div
-            className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
-          >
+          <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center shadow-lg scale-105 
+          lg:scale-100 lg:group-hover:scale-110 transition-transform duration-300 z-10`}>
             <feature.icon className="h-8 w-8 text-white" />
           </div>
 
           {/* Text Content */}
-          <div className="text-center">
-            <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-yellow-600 transition-colors">
+          <div className="text-center relative z-10">
+            <h3 className="text-lg font-bold text-yellow-600 mb-2 lg:text-gray-900 lg:group-hover:text-yellow-600 transition-colors">
               {feature.title}
             </h3>
-            <p className="text-gray-600 text-sm leading-relaxed">
+            <p className="text-gray-700 text-sm leading-relaxed lg:text-gray-600 transition-colors">
               {feature.description}
             </p>
           </div>
@@ -958,6 +963,7 @@ useEffect(() => {
     </div>
   </div>
 </section>
+
         {/* Enhanced Categories Section */}
         <section id="categories" className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 relative">
   <div className="absolute inset-0 bg-gradient-to-r from-yellow-50/30 to-orange-50/30"></div>
@@ -984,8 +990,10 @@ useEffect(() => {
       {categories.map((category, index) => (
         <div
           key={index}
-          className={`group relative p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2 border border-white/50
-          flex flex-col items-center justify-center min-h-[230px] gap-4`}
+          className={`group relative p-8 rounded-2xl shadow-2xl -translate-y-2 border border-white/30 
+            lg:shadow-lg lg:translate-y-0 lg:hover:shadow-2xl lg:hover:-translate-y-2 
+            transition-all duration-500 cursor-pointer flex flex-col items-center justify-center min-h-[230px] gap-4`}
+            
           style={{
             backgroundImage: `url(${category.bgImage})`,
             backgroundSize: 'cover',
@@ -993,7 +1001,7 @@ useEffect(() => {
           }}
         >
           {/* Overlay for readability */}
-          <div className="absolute inset-0 bg-black/40 rounded-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-500"></div>
+          <div className="absolute inset-0 bg-black/40 rounded-2xl opacity-60 lg:opacity-0 lg:group-hover:opacity-60 transition-opacity duration-500"></div>
 
           {/* Content */}
           <div className="relative flex flex-col items-center text-center z-10">
@@ -1321,31 +1329,39 @@ useEffect(() => {
   </div>
 
   {/* Store Buttons */}
-  <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-      <a
-        href="https://apps.apple.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-          alt="Download on the App Store"
-          className="h-12 sm:h-14"
-        />
-      </a>
-      <a
-        href="https://play.google.com/store"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-          alt="Get it on Google Play"
-          className="h-12 sm:h-14"
-        />
-      </a>
-      <p>Free to download . No hidden charges</p>
-    </div>
+  <div className="flex flex-col gap-3 justify-center items-center text-center">
+  {/* App Store Badge */}
+  <a
+    href="https://apps.apple.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-48 h-14"
+  >
+    <img
+      src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+      alt="Download on the App Store"
+      className="w-full h-full object-contain"
+    />
+  </a>
+
+  {/* Google Play Badge */}
+  <a
+    href="https://play.google.com/store"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-48 h-14"
+  >
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+      alt="Get it on Google Play"
+      className="w-full h-full object-contain"
+    />
+  </a>
+
+  {/* Note */}
+  <p className="text-sm text-gray-700">Free to download · No hidden charges</p>
+</div>
+
 </div>
 
   </div>
