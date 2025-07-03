@@ -127,7 +127,7 @@ useEffect(() => {
     return () => clearTimeout(timer);
   }, []);
   const [formData, setFormData] = useState({
-    businessName: "",
+    Name: "",
     email: "",
     phone: "",
     category: "",
@@ -299,7 +299,7 @@ useEffect(() => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    if (!formData.businessName || !formData.email || !formData.phone || !formData.category) {
+    if (!formData.Name || !formData.email || !formData.phone || !formData.category) {
       setSubmitMessage("Please fill in all fields")
       setIsSubmitting(false)
       return
@@ -318,7 +318,7 @@ useEffect(() => {
 
       if (response.ok) {
         setSubmitMessage("Registration successful! We'll contact you within 24 hours.")
-        setFormData({ businessName: "", email: "", phone: "", category: "" })
+        setFormData({ Name: "", email: "", phone: "", category: "" })
       } else {
         setSubmitMessage(result.error || "Registration failed. Please try again.")
       }
@@ -573,21 +573,21 @@ useEffect(() => {
   className="flex items-center cursor-pointer"
   onClick={() => scrollToSection('hero')}
 >
-<div className="bg-white p-2 rounded-xl shadow-sm h-24 flex items-center">
-<img
-  src="/images/Copy%20of%20SARAL%20EVENTS%20LOGO/5-removebg-preview.png"
-  alt="Saral Events"
-  className="h-28 w-auto object-contain"
-/>
-
+<div className="h-full flex items-center">
+  <img
+    src="/images/Copy%20of%20SARAL%20EVENTS%20LOGO/5-removebg-preview.png"
+    alt="Saral Events"
+    className="h-[150px] w-auto object-contain"
+  />
 </div>
+
 
 </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-8">
                   <button
                     onClick={() => scrollToSection("hero")}
-                    className={`px-3 py-2 text-sm font-medium transition-all duration-300 ${
+                    className={`px-3 py-2 text-base md:text-lg font-medium transition-all duration-300 ${
                       activeSection === "hero"
                         ? "text-yellow-600 border-b-2 border-yellow-600"
                         : "text-gray-700 hover:text-yellow-600"
@@ -597,7 +597,7 @@ useEffect(() => {
                   </button>
                   <button
                     onClick={() => scrollToSection("features")}
-                    className={`px-3 py-2 text-sm font-medium transition-all duration-300 ${
+                    className={`px-3 py-2 text-base md:text-lg font-medium transition-all duration-300 ${
                       activeSection === "features"
                         ? "text-yellow-600 border-b-2 border-yellow-600"
                         : "text-gray-700 hover:text-yellow-600"
@@ -607,7 +607,7 @@ useEffect(() => {
                   </button>
                   <button
                     onClick={() => scrollToSection("categories")}
-                    className={`px-3 py-2 text-sm font-medium transition-all duration-300 ${
+                    className={`px-3 py-2 text-base md:text-lg font-medium transition-all duration-300 ${
                       activeSection === "categories"
                         ? "text-yellow-600 border-b-2 border-yellow-600"
                         : "text-gray-700 hover:text-yellow-600"
@@ -617,7 +617,7 @@ useEffect(() => {
                   </button>
                   <button
                     onClick={() => scrollToSection("faq")}
-                    className={`px-3 py-2 text-sm font-medium transition-all duration-300 ${
+                    className={`px-3 py-2 text-base md:text-lg font-medium transition-all duration-300 ${
                       activeSection === "faq"
                         ? "text-yellow-600 border-b-2 border-yellow-600"
                         : "text-gray-700 hover:text-yellow-600"
@@ -627,7 +627,7 @@ useEffect(() => {
                   </button>
                   <button
                     onClick={() => scrollToSection("contact")}
-                    className={`px-3 py-2 text-sm font-medium transition-all duration-300 ${
+                    className={`px-3 py-2 text-base md:text-lg font-medium transition-all duration-300 ${
                       activeSection === "contact"
                         ? "text-yellow-600 border-b-2 border-yellow-600"
                         : "text-gray-700 hover:text-yellow-600"
@@ -636,11 +636,12 @@ useEffect(() => {
                     Contact
                   </button>
                   <button
-                    onClick={() => scrollToSection("vendor-registration")}
-                    className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105"
-                  >
-                    For Vendors
-                  </button>
+  onClick={() => scrollToSection("vendor-registration")}
+  className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-5 py-2.5 rounded-full text-base md:text-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105"
+>
+  For Vendors
+</button>
+
                 </div>
               </div>
 
@@ -696,12 +697,10 @@ useEffect(() => {
             </div>
           )}
         </nav>
-
-        {/* Hero Section with Enhanced Design */}
-        <section id="hero" className="relative h-screen overflow-hidden">
+        <section id="hero" className="relative min-h-screen overflow-x-hidden">
   {/* 🔥 Background Carousel */}
   <div className="absolute inset-0 z-0">
-  {images.map((url, index) => (
+    {images.map((url, index) => (
       <div
         key={index}
         className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ${
@@ -713,11 +712,11 @@ useEffect(() => {
   </div>
 
   {/* 🔥 Overlay */}
-  <div className="absolute inset-0 bg-black/40 z-10"></div>
+  <div className="absolute inset-0 bg-black/40 z-10" />
 
   {/* 🔥 Foreground Content */}
-  <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-    <div className="grid lg:grid-cols-2 gap-12 items-center">
+  <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="grid lg:grid-cols-2 gap-12 items-start">
       {/* Left */}
       <div className="space-y-8">
         <div className="inline-flex items-center px-4 py-2 bg-white/70 backdrop-blur-sm rounded-full text-sm font-medium text-yellow-700 border border-yellow-200">
@@ -726,14 +725,10 @@ useEffect(() => {
         </div>
         <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
           Plan{' '}
-          <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-            Less
-          </span>
+          <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">Less</span>
           <br />
           Celebrate{' '}
-          <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-            More
-          </span>
+          <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">More</span>
         </h1>
         <p className="text-xl text-white/90">
           Book trusted vendors, manage budgets, guest lists, and celebrate stress-free.
@@ -773,89 +768,62 @@ useEffect(() => {
       </div>
 
       {/* QR Code Box */}
-      <div className="flex justify-center">
-      <div className="relative bg-white/20 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/30 w-[320px]">
-  <div className="text-center mb-4">
-    <div
-      className="mx-auto mb-3 w-48 h-48 bg-white/70 rounded-2xl flex items-center justify-center transition-transform duration-300 hover:scale-105 shadow-md"
-      onClick={handleQRScan}
-    >
-      <QRCode
-        value="https://play.google.com/store/apps/details?id=com.yourapp"
-        size={180}
-        fgColor="#000000"
-        bgColor="#ffffff"
-        className="rounded-2xl" // More rounded
-      />
+      <div className="flex justify-center px-4 sm:px-0">
+  <div className="relative bg-white/20 backdrop-blur-lg p-6 rounded-3xl shadow-xl border border-white/30 w-full max-w-sm sm:max-w-md">
+    
+    {/* QR Code */}
+    <div className="text-center mb-4">
+      <div
+        className="mx-auto mb-4 w-48 h-48 bg-white/80 rounded-2xl flex items-center justify-center transition-transform duration-300 hover:scale-105 shadow-md"
+        onClick={handleQRScan}
+      >
+        <QRCode
+          value="https://play.google.com/store/apps/details?id=com.yourapp"
+          size={160}
+          fgColor="#000000"
+          bgColor="#ffffff"
+          className="rounded-lg"
+        />
+      </div>
+      <p className="text-base font-semibold text-gray-800 tracking-wide">
+        SCAN TO DOWNLOAD
+      </p>
     </div>
-    <p className="text-sm font-semibold text-gray-800 tracking-wide">
-      SCAN TO DOWNLOAD
-    </p>
-  </div>
 
-  <div className="flex gap-3 justify-center">
-    {/* App Store Button */}
-    <button
-    onClick={() => handleAppDownload('ios')}
-    className="flex items-center bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition-transform duration-300 hover:scale-105 shadow-md"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
-      fill="white"
-      viewBox="0 0 384 512"
-      className="mr-3"
-    >
-      <path d="M318.7 268.7c-1.3-60.2 49.1-88.9 51.3-90.2-28-41-71.5-46.6-86.9-47.1-37-3.7-72.2 21.6-91 21.6-18.7 0-47.8-21-78.7-20.4-40.5.6-78 23.6-98.9 59.8-42.3 73.4-10.8 181.8 30.4 241.3 20.2 29.2 44.2 61.9 75.7 60.7 30.2-1.2 41.6-19.7 77.9-19.7 36.3 0 46.1 19.7 78.1 19.1 32.3-.6 52.7-29.9 72.8-59 23-33.4 32.5-65.8 32.8-67.5-.7-.3-62.6-24-63.4-95.6zM255.3 91c16.8-20.4 28.1-48.8 25-77.3-24.2 1-53.5 16.1-70.7 36.4-15.5 18.1-29.2 47.2-25.5 74.9 27.1 2.1 54.5-13.8 71.2-34z"/>
-    </svg>
-    <div className="text-left">
-      <div className="text-xs">Download on</div>
-      <div className="text-sm font-semibold">App Store</div>
+    {/* Official Store Badges */}
+    <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+      <a
+        href="https://apps.apple.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+          alt="Download on the App Store"
+          className="h-12 sm:h-14"
+        />
+      </a>
+      <a
+        href="https://play.google.com/store"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+          alt="Get it on Google Play"
+          className="h-12 sm:h-14"
+        />
+      </a>
     </div>
-  </button>
-
-  {/* Google Play Button */}
-  <button
-  onClick={() => handleAppDownload('android')}
-  className="flex items-center bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition-transform duration-300 hover:scale-105 shadow-md"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="22"
-    height="22"
-    viewBox="0 0 512 512"
-    className="mr-3"
-  >
-    <path
-      fill="#FFD400"
-      d="M325.3 234.3 104.8 26.6C96.3 18.9 83 25.1 83 36.9v438.2c0 11.8 13.3 18 21.8 10.3l220.5-207.7c9.6-9 9.6-24.1 0-33.1z"
-    />
-    <path
-      fill="#FF3333"
-      d="M361.7 256 422.6 199.3c13.4-12.5 13.4-32.6 0-45.1l-60.9-56.7c-8.9-8.3-22.7-1.9-22.7 10.3v138c0 12.2 13.8 18.6 22.7 10.2z"
-    />
-    <path
-      fill="#48FF48"
-      d="M361.7 256v.1l60.8 56.7c13.4 12.5 13.4 32.6 0 45.1l-60.9 56.7c-8.9 8.3-22.7 1.9-22.7-10.3V266.2c0-12.2 13.8-18.6 22.7-10.2z"
-    />
-    <path
-      fill="#3BCCFF"
-      d="m325.3 277.7-220.5 207.7c-8.5 7.7-21.8 1.5-21.8-10.3V36.9c0-11.8 13.3-18 21.8-10.3l220.5 207.7c9.6 9 9.6 24.1 0 33.1z"
-    />
-  </svg>
-
-  <div className="text-left">
-    <div className="text-xs">Get it on</div>
-    <div className="text-sm font-semibold">Google Play</div>
-  </div>
-</button>
   </div>
 </div>
-</div>
+
     </div>
   </div>
 </section>
+
+
+
 {/* usp section */}
 <section className="py-16 bg-white">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -864,45 +832,76 @@ useEffect(() => {
     </h2>
 
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-      {/* USP 1 */}
-      <div className="bg-blue-600 rounded-2xl p-8 text-center text-white hover:scale-105 transition transform shadow-md">
-        <div className="text-5xl mb-4">⚡</div>
-        <h3 className="text-xl font-semibold mb-2">Instant Booking</h3>
-        <p className="mb-6">Book vendors instantly without any hassle.</p>
-      </div>
-
-      {/* USP 2 */}
-      <div className="bg-rose-500 rounded-2xl p-8 text-center text-white hover:scale-105 transition transform shadow-md">
-        <div className="text-5xl mb-4">📍</div>
-        <h3 className="text-xl font-semibold mb-2">Vendor Status Tracking</h3>
-        <p className="mb-6">Track the real-time status of your vendors after booking.</p>
-      </div>
-
-      {/* USP 3 */}
-      <div className="bg-amber-500 rounded-2xl p-8 text-center text-white hover:scale-105 transition transform shadow-md">
-        <div className="text-5xl mb-4">💌</div>
-        <h3 className="text-xl font-semibold mb-2">Custom Invitations</h3>
-        <p className="mb-6">Design and send customized invitations effortlessly.</p>
-      </div>
-
-      {/* USP 4 */}
-      <div className="bg-green-600 rounded-2xl p-8 text-center text-white hover:scale-105 transition transform shadow-md">
-        <div className="text-5xl mb-4">🧮</div>
-        <h3 className="text-xl font-semibold mb-2">Budget Calculator</h3>
-        <p className="mb-6">Plan your budget easily with our smart calculator.</p>
-      </div>
-
-      {/* USP 5 */}
-      <div className="bg-purple-600 rounded-2xl p-8 text-center text-white hover:scale-105 transition transform shadow-md">
-        <div className="text-5xl mb-4">✅</div>
-        <h3 className="text-xl font-semibold mb-2">Trusted & Verified Vendors</h3>
-        <p className="mb-6">Work only with verified and reliable vendors.</p>
-      </div>
+      {[
+        {
+          color: "bg-blue-600",
+          icon: (
+            <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path d="M9 17v-2a4 4 0 014-4h4" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M9 17l-4-4m0 0l4-4m-4 4h12" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          ),
+          title: "Instant Booking",
+          desc: "Book vendors instantly without hassle.",
+        },
+        {
+          color: "bg-rose-500",
+          icon: (
+            <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path d="M12 11c0 .828-.672 1.5-1.5 1.5S9 11.828 9 11s.672-1.5 1.5-1.5S12 10.172 12 11z" />
+              <path d="M3.5 20.5l7-7" />
+              <path d="M17 11a5 5 0 11-10 0 5 5 0 0110 0z" />
+            </svg>
+          ),
+          title: "Vendor Tracking",
+          desc: "Track vendor status in real-time after booking.",
+        },
+        {
+          color: "bg-amber-500",
+          icon: (
+            <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path d="M21 8V7a2 2 0 00-2-2h-4l-3-3-3 3H5a2 2 0 00-2 2v1" />
+              <path d="M3 8l9 6 9-6" />
+              <path d="M3 8v10a2 2 0 002 2h14a2 2 0 002-2V8" />
+            </svg>
+          ),
+          title: "Custom Invitations",
+          desc: "Create and send beautiful digital invites easily.",
+        },
+        {
+          color: "bg-green-600",
+          icon: (
+            <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
+            </svg>
+          ),
+          title: "Budget Calculator",
+          desc: "Manage event budgets easily and smartly.",
+        },
+        {
+          color: "bg-purple-600",
+          icon: (
+            <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          ),
+          title: "Verified Vendors",
+          desc: "Work only with trusted and verified vendors.",
+        },
+      ].map((usp, idx) => (
+        <div
+          key={idx}
+          className={`${usp.color} rounded-2xl p-8 text-center text-white transition-all transform shadow-md min-h-[260px] sm:min-h-[220px]
+          scale-[1.02] lg:scale-100 lg:hover:scale-[1.05] hover:shadow-xl hover:z-10 duration-300`}
+        >
+          <div className="mb-4 flex justify-center">{usp.icon}</div>
+          <h3 className="text-xl font-semibold mb-2">{usp.title}</h3>
+          <p className="text-sm">{usp.desc}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>
-
-
         {/* Enhanced Features Section */}
         <section id="features" className="py-20 bg-neutral-50 relative">
   <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white"></div>
@@ -959,10 +958,6 @@ useEffect(() => {
     </div>
   </div>
 </section>
-
-
-
-
         {/* Enhanced Categories Section */}
         <section id="categories" className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 relative">
   <div className="absolute inset-0 bg-gradient-to-r from-yellow-50/30 to-orange-50/30"></div>
@@ -1308,22 +1303,51 @@ useEffect(() => {
     </p>
 
     <div className="flex flex-col lg:flex-row gap-8 justify-center items-center">
-      <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-        <div
-          className="w-40 h-40 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4 cursor-pointer hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
-          onClick={handleQRScan}
-        >
-          <div className="text-6xl animate-pulse">📱</div>
-        </div>
-        <p className="text-sm font-semibold text-white tracking-wide">SCAN TO DOWNLOAD</p>
-      </div>
-
-      <div className="flex flex-col gap-4">
-        <AppStoreButton platform="ios" onClick={() => handleAppDownload("ios")} />
-        <AppStoreButton platform="android" onClick={() => handleAppDownload("android")} />
-        <p className="text-yellow-100 text-sm mt-2">Free to download • No hidden charges</p>
-      </div>
+  {/* QR Code Box */}
+  <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 flex flex-col items-center">
+    <div
+      className="w-40 h-40 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4 cursor-pointer hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
+      onClick={handleQRScan}
+    >
+      <QRCode
+        value="https://play.google.com/store/apps/details?id=com.yourapp"
+        size={130}
+        fgColor="#000000"
+        bgColor="#ffffff"
+        className="rounded-md"
+      />
     </div>
+    <p className="text-sm font-semibold text-white tracking-wide">SCAN TO DOWNLOAD</p>
+  </div>
+
+  {/* Store Buttons */}
+  <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+      <a
+        href="https://apps.apple.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+          alt="Download on the App Store"
+          className="h-12 sm:h-14"
+        />
+      </a>
+      <a
+        href="https://play.google.com/store"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+          alt="Get it on Google Play"
+          className="h-12 sm:h-14"
+        />
+      </a>
+      <p>Free to download . No hidden charges</p>
+    </div>
+</div>
+
   </div>
 </section>
 
@@ -1369,10 +1393,10 @@ useEffect(() => {
                 <form onSubmit={handleVendorSubmit} className="space-y-6">
                   <input
                     type="text"
-                    name="businessName"
-                    value={formData.businessName}
+                    name="Name"
+                    value={formData.Name}
                     onChange={handleInputChange}
-                    placeholder="Business Name"
+                    placeholder="Name"
                     className="w-full px-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-600 focus:border-transparent transition-all duration-300 bg-white"
                     required
                   />

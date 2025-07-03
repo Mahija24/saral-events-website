@@ -1,5 +1,5 @@
 export const createVendorWelcomeTemplate = (data: {
-  businessName: string
+  Name: string
   email: string
   phone: string
   category: string
@@ -10,7 +10,7 @@ export const createVendorWelcomeTemplate = (data: {
       <p>Thank you for registering as a vendor.</p>
       <div>
         <h3>Your Details:</h3>
-        <p><strong>Business:</strong> ${data.businessName}</p>
+        <p><strong>Business:</strong> ${data.Name}</p>
         <p><strong>Email:</strong> ${data.email}</p>
         <p><strong>Phone:</strong> ${data.phone}</p>
         <p><strong>Category:</strong> ${data.category}</p>
