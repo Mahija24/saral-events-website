@@ -831,7 +831,8 @@ useEffect(() => {
       What makes us different?
     </h2>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+    {/* Swipeable Container */}
+    <div className="flex overflow-x-auto space-x-4 sm:grid sm:grid-cols-2 md:grid-cols-3 sm:gap-6 scrollbar-hide px-1 -mx-1">
       {[
         {
           color: "bg-blue-600",
@@ -854,7 +855,6 @@ useEffect(() => {
           title: "Verified Vendors",
           desc: "Work only with trusted and verified vendors.",
         },
-        
         {
           color: "bg-amber-500",
           icon: (
@@ -890,20 +890,19 @@ useEffect(() => {
           desc: "Track vendor status in real-time after booking.",
         },
         {
-  color: "bg-cyan-600", // matches the tone of other strong colors like blue, green, purple
-  icon: (
-    <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-      <path d="M12 4v16m8-8H4" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  ),
-  title: "24/7 Support",
-  desc: "Get help whenever you need it, any time, any day.",
-}
-,
+          color: "bg-cyan-600",
+          icon: (
+            <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path d="M12 4v16m8-8H4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          ),
+          title: "24/7 Support",
+          desc: "Get help whenever you need it, any time, any day.",
+        },
       ].map((usp, idx) => (
         <div
           key={idx}
-          className={`${usp.color} rounded-2xl p-6 sm:p-8 text-center text-white shadow-md sm:min-h-[220px] min-h-[160px]
+          className={`${usp.color} shrink-0 sm:shrink rounded-2xl p-6 sm:p-8 text-center text-white shadow-md min-w-[260px] sm:min-w-0 sm:min-h-[220px] min-h-[160px]
           transition-all duration-300 scale-[1.02] lg:scale-100 lg:hover:scale-[1.05]`}
         >
           <div className="mb-3 flex justify-center">{usp.icon}</div>
@@ -914,6 +913,7 @@ useEffect(() => {
     </div>
   </div>
 </section>
+
 
         {/* Enhanced Features Section */}
         <section id="features" className="py-16 sm:py-20 bg-neutral-50 relative">
@@ -940,34 +940,28 @@ useEffect(() => {
       </p>
     </div>
 
-    {/* Features Grid */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    {/* Swipeable on mobile, grid on larger screens */}
+    <div className="flex overflow-x-auto space-x-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 -mx-1 px-1 pb-6 hide-scrollbar">
       {features.map((feature, index) => (
         <div
           key={index}
-          className="group relative bg-gradient-to-br from-yellow-50/50 to-orange-50/50 p-5 sm:p-8 rounded-2xl border border-yellow-100 shadow-2xl 
-          -translate-y-1 sm:-translate-y-2 
-          lg:bg-white lg:border-gray-100 lg:shadow-none lg:translate-y-0 
-          lg:hover:bg-gradient-to-br lg:hover:from-yellow-50/50 lg:hover:to-orange-50/50 
-          lg:hover:border-yellow-200 lg:hover:shadow-2xl lg:hover:-translate-y-2 
-          transition-all duration-500 cursor-pointer flex flex-col items-center gap-4 sm:gap-6"
+          className="shrink-0 md:shrink bg-gradient-to-br from-yellow-50/50 to-orange-50/50 p-5 sm:p-8 rounded-2xl border border-yellow-100 shadow-2xl 
+          min-w-[260px] md:min-w-0 transition-all duration-500 flex flex-col items-center gap-4 sm:gap-6 mb-6 md:mb-0
+          md:bg-white md:border-gray-100 md:shadow-none 
+          md:hover:bg-gradient-to-br md:hover:from-yellow-50/50 md:hover:to-orange-50/50 
+          md:hover:border-yellow-200 md:hover:shadow-2xl md:hover:-translate-y-2"
         >
-          {/* Background Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-yellow-50/50 to-orange-50/50 rounded-2xl opacity-100 
-          lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500"></div>
-
           {/* Icon */}
-          <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center shadow-lg scale-105 
-          lg:scale-100 lg:group-hover:scale-110 transition-transform duration-300 z-10`}>
+          <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center shadow-lg z-10`}>
             <feature.icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
           </div>
 
           {/* Text Content */}
           <div className="text-center relative z-10">
-            <h3 className="text-base sm:text-lg font-bold text-yellow-600 mb-1 sm:mb-2 lg:text-gray-900 lg:group-hover:text-yellow-600 transition-colors">
+            <h3 className="text-base sm:text-lg font-bold text-yellow-600 mb-1 sm:mb-2 md:text-gray-900 md:hover:text-yellow-600 transition-colors">
               {feature.title}
             </h3>
-            <p className="text-xs sm:text-sm text-gray-700 leading-relaxed lg:text-gray-600 transition-colors">
+            <p className="text-xs sm:text-sm text-gray-700 md:text-gray-600 transition-colors">
               {feature.description}
             </p>
           </div>
@@ -976,6 +970,8 @@ useEffect(() => {
     </div>
   </div>
 </section>
+
+
 
 
         {/* Enhanced Categories Section */}

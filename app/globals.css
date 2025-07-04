@@ -123,3 +123,20 @@ select:focus {
 .shadow-yellow-lg {
   box-shadow: 0 20px 40px rgba(217, 119, 6, 0.2);
 }
+/* Add to your globals.css or Tailwind config file */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+/* Hide scrollbar while allowing scroll */
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
