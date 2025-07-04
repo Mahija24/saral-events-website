@@ -140,3 +140,19 @@ select:focus {
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+/* Custom Swiper pagination styles */
+.swiper-pagination-bullet {
+  background-color: transparent !important;
+  border: 2px solid #e2e8f0; /* light gray border (Tailwind gray-300) */
+  opacity: 1 !important;
+  width: 10px;
+  height: 10px;
+  transition: all 0.3s ease;
+  margin: 0 4px !important;
+  border-radius: 9999px;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #facc15 !important; /* Tailwind yellow-400 */
+  border-color: #facc15 !important;
+}

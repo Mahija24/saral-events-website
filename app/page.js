@@ -32,10 +32,11 @@ import {
   Settings,
 } from "lucide-react"
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from "swiper/modules";
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import QRCode from 'react-qr-code';
-
+import "swiper/css/pagination";
 
 // Add this right after the imports and before the useCountUp hook
 const SafeComponent = ({ children }) => {
@@ -377,6 +378,74 @@ useEffect(() => {
   }
 
   // Static data arrays - moved outside component to prevent SSR issues
+  const uspList = [
+    {
+      color: "bg-blue-600",
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path d="M9 17v-2a4 4 0 014-4h4" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M9 17l-4-4m0 0l4-4m-4 4h12" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+      title: "Instant Booking",
+      desc: "Book vendors instantly without hassle.",
+    },
+    {
+      color: "bg-purple-600",
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+      title: "Verified Vendors",
+      desc: "Work only with trusted and verified vendors.",
+    },
+    {
+      color: "bg-amber-500",
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path d="M21 8V7a2 2 0 00-2-2h-4l-3-3-3 3H5a2 2 0 00-2 2v1" />
+          <path d="M3 8l9 6 9-6" />
+          <path d="M3 8v10a2 2 0 002 2h14a2 2 0 002-2V8" />
+        </svg>
+      ),
+      title: "Custom Invitations",
+      desc: "Create and send beautiful digital invites easily.",
+    },
+    {
+      color: "bg-green-600",
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
+        </svg>
+      ),
+      title: "Budget Calculator",
+      desc: "Manage event budgets easily and smartly.",
+    },
+    {
+      color: "bg-rose-500",
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path d="M12 11c0 .828-.672 1.5-1.5 1.5S9 11.828 9 11s.672-1.5 1.5-1.5S12 10.172 12 11z" />
+          <path d="M3.5 20.5l7-7" />
+          <path d="M17 11a5 5 0 11-10 0 5 5 0 0110 0z" />
+        </svg>
+      ),
+      title: "Vendor Tracking",
+      desc: "Track vendor status in real-time after booking.",
+    },
+    {
+      color: "bg-cyan-600",
+      icon: (
+        <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path d="M12 4v16m8-8H4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+      title: "24/7 Support",
+      desc: "Get help whenever you need it, any time, any day.",
+    },
+  ];
+  
   const features = [
     {
       icon: Zap,
@@ -831,82 +900,44 @@ useEffect(() => {
       What makes us different?
     </h2>
 
-    {/* Swipeable Container */}
-    <div className="flex overflow-x-auto space-x-4 sm:grid sm:grid-cols-2 md:grid-cols-3 sm:gap-6 scrollbar-hide px-1 -mx-1">
-      {[
-        {
-          color: "bg-blue-600",
-          icon: (
-            <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d="M9 17v-2a4 4 0 014-4h4" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M9 17l-4-4m0 0l4-4m-4 4h12" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          ),
-          title: "Instant Booking",
-          desc: "Book vendors instantly without hassle.",
-        },
-        {
-          color: "bg-purple-600",
-          icon: (
-            <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          ),
-          title: "Verified Vendors",
-          desc: "Work only with trusted and verified vendors.",
-        },
-        {
-          color: "bg-amber-500",
-          icon: (
-            <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d="M21 8V7a2 2 0 00-2-2h-4l-3-3-3 3H5a2 2 0 00-2 2v1" />
-              <path d="M3 8l9 6 9-6" />
-              <path d="M3 8v10a2 2 0 002 2h14a2 2 0 002-2V8" />
-            </svg>
-          ),
-          title: "Custom Invitations",
-          desc: "Create and send beautiful digital invites easily.",
-        },
-        {
-          color: "bg-green-600",
-          icon: (
-            <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
-            </svg>
-          ),
-          title: "Budget Calculator",
-          desc: "Manage event budgets easily and smartly.",
-        },
-        {
-          color: "bg-rose-500",
-          icon: (
-            <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d="M12 11c0 .828-.672 1.5-1.5 1.5S9 11.828 9 11s.672-1.5 1.5-1.5S12 10.172 12 11z" />
-              <path d="M3.5 20.5l7-7" />
-              <path d="M17 11a5 5 0 11-10 0 5 5 0 0110 0z" />
-            </svg>
-          ),
-          title: "Vendor Tracking",
-          desc: "Track vendor status in real-time after booking.",
-        },
-        {
-          color: "bg-cyan-600",
-          icon: (
-            <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d="M12 4v16m8-8H4" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          ),
-          title: "24/7 Support",
-          desc: "Get help whenever you need it, any time, any day.",
-        },
-      ].map((usp, idx) => (
+    {/* Swiper on Mobile */}
+    <div className="md:hidden">
+      <Swiper
+        modules={[Pagination]}
+        slidesPerView={1}
+        spaceBetween={20}
+        pagination={{
+          clickable: true,
+          el: ".custom-usp-pagination",
+        }}
+        className="pb-6"
+      >
+        {uspList.map((usp, idx) => (
+          <SwiperSlide key={idx}>
+            <div
+              className={`${usp.color} rounded-2xl p-6 text-center text-white shadow-md min-h-[180px] transition-all duration-300 scale-[1.02]`}
+            >
+              <div className="mb-3 flex justify-center">{usp.icon}</div>
+              <h3 className="text-lg font-semibold mb-1">{usp.title}</h3>
+              <p className="text-sm text-white/90">{usp.desc}</p>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* Pagination Dots */}
+      <div className="custom-usp-pagination flex justify-center mt-4 space-x-2"></div>
+    </div>
+
+    {/* Grid on Desktop */}
+    <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6">
+      {uspList.map((usp, idx) => (
         <div
           key={idx}
-          className={`${usp.color} shrink-0 sm:shrink rounded-2xl p-6 sm:p-8 text-center text-white shadow-md min-w-[260px] sm:min-w-0 sm:min-h-[220px] min-h-[160px]
-          transition-all duration-300 scale-[1.02] lg:scale-100 lg:hover:scale-[1.05]`}
+          className={`${usp.color} rounded-2xl p-6 text-center text-white shadow-md min-h-[220px] transition-all duration-300 hover:scale-[1.05]`}
         >
           <div className="mb-3 flex justify-center">{usp.icon}</div>
-          <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2">{usp.title}</h3>
+          <h3 className="text-lg font-semibold mb-1">{usp.title}</h3>
           <p className="text-sm text-white/90">{usp.desc}</p>
         </div>
       ))}
@@ -940,38 +971,64 @@ useEffect(() => {
       </p>
     </div>
 
-    {/* Swipeable on mobile, grid on larger screens */}
-    <div className="flex overflow-x-auto space-x-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 -mx-1 px-1 pb-6 hide-scrollbar">
-      {features.map((feature, index) => (
+    {/* Cards Slider on Mobile, Grid on Large Screens */}
+    <div className="md:hidden">
+  <Swiper
+    modules={[Pagination]}
+    slidesPerView={1}
+    spaceBetween={20}
+    pagination={{
+      clickable: true,
+      el: ".custom-swiper-pagination",
+    }}
+    className="pb-6"
+  >
+    {features.map((feature, index) => (
+      <SwiperSlide key={index}>
         <div
-          key={index}
-          className="shrink-0 md:shrink bg-gradient-to-br from-yellow-50/50 to-orange-50/50 p-5 sm:p-8 rounded-2xl border border-yellow-100 shadow-2xl 
-          min-w-[260px] md:min-w-0 transition-all duration-500 flex flex-col items-center gap-4 sm:gap-6 mb-6 md:mb-0
-          md:bg-white md:border-gray-100 md:shadow-none 
-          md:hover:bg-gradient-to-br md:hover:from-yellow-50/50 md:hover:to-orange-50/50 
-          md:hover:border-yellow-200 md:hover:shadow-2xl md:hover:-translate-y-2"
+          className="min-h-[220px] bg-gradient-to-br from-yellow-50/50 to-orange-50/50 p-6 rounded-2xl border border-yellow-100 shadow-2xl 
+          transition-all duration-500 flex flex-col items-center gap-5"
         >
-          {/* Icon */}
-          <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center shadow-lg z-10`}>
-            <feature.icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
+          <div className={`w-[52px] h-[52px] bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center shadow-lg`}>
+            <feature.icon className="w-[26px] h-[26px] text-white" />
           </div>
-
-          {/* Text Content */}
-          <div className="text-center relative z-10">
-            <h3 className="text-base sm:text-lg font-bold text-yellow-600 mb-1 sm:mb-2 md:text-gray-900 md:hover:text-yellow-600 transition-colors">
+          <div className="text-center">
+            <h3 className="text-base font-bold text-yellow-600 mb-1">
               {feature.title}
             </h3>
-            <p className="text-xs sm:text-sm text-gray-700 md:text-gray-600 transition-colors">
+            <p className="text-sm text-gray-700">
               {feature.description}
             </p>
           </div>
+        </div>
+      </SwiperSlide>
+    ))}
+  </Swiper>
+
+  {/* Pagination dots below cards */}
+  <div className="custom-swiper-pagination flex justify-center mt-4 space-x-2"></div>
+</div>
+
+
+    {/* Grid View for MD+ */}
+    <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {features.map((feature, index) => (
+        <div
+          key={index}
+          className="bg-white p-6 rounded-2xl border border-gray-100 transition-all hover:bg-gradient-to-br hover:from-yellow-50/50 hover:to-orange-50/50 hover:border-yellow-200 hover:shadow-2xl hover:-translate-y-2 duration-500"
+        >
+          <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center shadow-lg mb-4`}>
+            <feature.icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
+          </div>
+          <h3 className="text-base sm:text-lg font-bold text-gray-900 hover:text-yellow-600 mb-1 transition-colors">
+            {feature.title}
+          </h3>
+          <p className="text-sm text-gray-600">{feature.description}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
-
-
 
 
         {/* Enhanced Categories Section */}
