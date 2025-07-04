@@ -485,21 +485,21 @@ useEffect(() => {
     {
       icon: Phone,
       title: "Call Us",
-      details: ["+91-98765-43210", "+91-87654-32109"],
+      details: ["+91 77318 42453"],
       action: handlePhoneCall,
       color: "from-green-400 to-green-600",
     },
     {
       icon: Mail,
       title: "Email Us",
-      details: ["info@saralevents.com", "support@saralevents.com"],
+      details: ["contactus@saralevents.com"],
       action: handleEmail,
       color: "from-blue-400 to-blue-600",
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      details: ["123 Business District", "Mumbai, Maharashtra 400001"],
+      details: ["14-1-129/11/2 Ground Floor", "Padmavathi Nagar,Allapur Bora Banda Separat, Hyderabad. Telangana-500018"],
       action: () => isClient && window.open("https://maps.google.com", "_blank"),
       color: "from-red-400 to-red-600",
     },
@@ -831,7 +831,7 @@ useEffect(() => {
       What makes us different?
     </h2>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
       {[
         {
           color: "bg-blue-600",
@@ -845,17 +845,16 @@ useEffect(() => {
           desc: "Book vendors instantly without hassle.",
         },
         {
-          color: "bg-rose-500",
+          color: "bg-purple-600",
           icon: (
             <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d="M12 11c0 .828-.672 1.5-1.5 1.5S9 11.828 9 11s.672-1.5 1.5-1.5S12 10.172 12 11z" />
-              <path d="M3.5 20.5l7-7" />
-              <path d="M17 11a5 5 0 11-10 0 5 5 0 0110 0z" />
+              <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           ),
-          title: "Vendor Tracking",
-          desc: "Track vendor status in real-time after booking.",
+          title: "Verified Vendors",
+          desc: "Work only with trusted and verified vendors.",
         },
+        
         {
           color: "bg-amber-500",
           icon: (
@@ -879,82 +878,96 @@ useEffect(() => {
           desc: "Manage event budgets easily and smartly.",
         },
         {
-          color: "bg-purple-600",
+          color: "bg-rose-500",
           icon: (
             <svg className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M12 11c0 .828-.672 1.5-1.5 1.5S9 11.828 9 11s.672-1.5 1.5-1.5S12 10.172 12 11z" />
+              <path d="M3.5 20.5l7-7" />
+              <path d="M17 11a5 5 0 11-10 0 5 5 0 0110 0z" />
             </svg>
           ),
-          title: "Verified Vendors",
-          desc: "Work only with trusted and verified vendors.",
+          title: "Vendor Tracking",
+          desc: "Track vendor status in real-time after booking.",
         },
+        {
+  color: "bg-cyan-600", // matches the tone of other strong colors like blue, green, purple
+  icon: (
+    <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+      <path d="M12 4v16m8-8H4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+  title: "24/7 Support",
+  desc: "Get help whenever you need it, any time, any day.",
+}
+,
       ].map((usp, idx) => (
         <div
           key={idx}
-          className={`${usp.color} rounded-2xl p-8 text-center text-white transition-all transform shadow-md min-h-[260px] sm:min-h-[220px]
-scale-[1.05] shadow-xl z-10 lg:scale-100 lg:shadow-md lg:z-0 lg:hover:scale-[1.05] lg:hover:shadow-xl lg:hover:z-10 duration-300`}
-
+          className={`${usp.color} rounded-2xl p-6 sm:p-8 text-center text-white shadow-md sm:min-h-[220px] min-h-[160px]
+          transition-all duration-300 scale-[1.02] lg:scale-100 lg:hover:scale-[1.05]`}
         >
-          <div className="mb-4 flex justify-center">{usp.icon}</div>
-          <h3 className="text-xl font-semibold mb-2">{usp.title}</h3>
-          <p className="text-sm">{usp.desc}</p>
+          <div className="mb-3 flex justify-center">{usp.icon}</div>
+          <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2">{usp.title}</h3>
+          <p className="text-sm text-white/90">{usp.desc}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
+
         {/* Enhanced Features Section */}
-        <section id="features" className="py-20 bg-neutral-50 relative">
+        <section id="features" className="py-16 sm:py-20 bg-neutral-50 relative">
   <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white"></div>
   <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     {/* Section Heading */}
-    <div className="text-center mb-16">
-      <div className="inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full text-sm font-medium text-yellow-700 mb-4">
+    <div className="text-center mb-12 sm:mb-16">
+      <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-yellow-100 rounded-full text-xs sm:text-sm font-medium text-yellow-700 mb-3 sm:mb-4">
         <Zap className="w-4 h-4 mr-2" />
         Everything You Need
       </div>
 
-      <p className="text-sm uppercase tracking-widest text-yellow-600 font-semibold mb-2">
+      <p className="text-xs sm:text-sm uppercase tracking-widest text-yellow-600 font-semibold mb-1 sm:mb-2">
         Comprehensive Event Planning Tools
       </p>
 
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
         All-in-One Event Planning, Made Simple
       </h2>
 
-      <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+      <p className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto">
         Whether it's a wedding, birthday, or corporate event, Saral Events has everything you need in one app.
       </p>
     </div>
 
     {/* Features Grid */}
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
       {features.map((feature, index) => (
         <div
           key={index}
-          className="group relative bg-gradient-to-br from-yellow-50/50 to-orange-50/50 p-8 rounded-2xl border border-yellow-100 shadow-2xl -translate-y-2 
+          className="group relative bg-gradient-to-br from-yellow-50/50 to-orange-50/50 p-5 sm:p-8 rounded-2xl border border-yellow-100 shadow-2xl 
+          -translate-y-1 sm:-translate-y-2 
           lg:bg-white lg:border-gray-100 lg:shadow-none lg:translate-y-0 
           lg:hover:bg-gradient-to-br lg:hover:from-yellow-50/50 lg:hover:to-orange-50/50 
           lg:hover:border-yellow-200 lg:hover:shadow-2xl lg:hover:-translate-y-2 
-          transition-all duration-500 cursor-pointer flex flex-col items-center gap-6"
+          transition-all duration-500 cursor-pointer flex flex-col items-center gap-4 sm:gap-6"
         >
           {/* Background Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-yellow-50/50 to-orange-50/50 rounded-2xl opacity-100 
           lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500"></div>
 
           {/* Icon */}
-          <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center shadow-lg scale-105 
+          <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center shadow-lg scale-105 
           lg:scale-100 lg:group-hover:scale-110 transition-transform duration-300 z-10`}>
-            <feature.icon className="h-8 w-8 text-white" />
+            <feature.icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
           </div>
 
           {/* Text Content */}
           <div className="text-center relative z-10">
-            <h3 className="text-lg font-bold text-yellow-600 mb-2 lg:text-gray-900 lg:group-hover:text-yellow-600 transition-colors">
+            <h3 className="text-base sm:text-lg font-bold text-yellow-600 mb-1 sm:mb-2 lg:text-gray-900 lg:group-hover:text-yellow-600 transition-colors">
               {feature.title}
             </h3>
-            <p className="text-gray-700 text-sm leading-relaxed lg:text-gray-600 transition-colors">
+            <p className="text-xs sm:text-sm text-gray-700 leading-relaxed lg:text-gray-600 transition-colors">
               {feature.description}
             </p>
           </div>
@@ -963,6 +976,7 @@ scale-[1.05] shadow-xl z-10 lg:scale-100 lg:shadow-md lg:z-0 lg:hover:scale-[1.0
     </div>
   </div>
 </section>
+
 
         {/* Enhanced Categories Section */}
         <section id="categories" className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 relative">
@@ -1199,14 +1213,14 @@ scale-[1.05] shadow-xl z-10 lg:scale-100 lg:shadow-md lg:z-0 lg:hover:scale-[1.0
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <button
-                      onClick={() => handlePhoneCall("+91-98765-43210")}
+                      onClick={() => handlePhoneCall("+91 77318 42453")}
                       className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300 flex items-center justify-center"
                     >
                       <Phone className="mr-2 h-5 w-5" />
                       Call Now
                     </button>
                     <button
-                      onClick={() => handleEmail("support@saralevents.com")}
+                      onClick={() => handleEmail("contactus@saralevents.com")}
                       className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300 flex items-center justify-center"
                     >
                       <Mail className="mr-2 h-5 w-5" />
@@ -1490,18 +1504,18 @@ scale-[1.05] shadow-xl z-10 lg:scale-100 lg:shadow-md lg:z-0 lg:hover:scale-[1.0
       {/* Contact Info */}
       <div className="flex flex-col sm:flex-row items-center gap-4 text-gray-400">
         <button
-          onClick={() => handlePhoneCall("+91-98765-43210")}
+          onClick={() => handlePhoneCall("+91 77318 42453")}
           className="flex items-center hover:text-yellow-400 transition-colors group"
         >
           <Phone className="h-4 w-4 mr-2 group-hover:animate-pulse" />
-          <span>+91-98765-43210</span>
+          <span>+91 77318 42453</span>
         </button>
         <button
-          onClick={() => handleEmail("info@saralevents.com")}
+          onClick={() => handleEmail("contactus@saralevents.com")}
           className="flex items-center hover:text-yellow-400 transition-colors group"
         >
           <Mail className="h-4 w-4 mr-2 group-hover:animate-pulse" />
-          <span>info@saralevents.com</span>
+          <span>contactus@saralevents.com</span>
         </button>
       </div>
 
@@ -1510,8 +1524,8 @@ scale-[1.05] shadow-xl z-10 lg:scale-100 lg:shadow-md lg:z-0 lg:hover:scale-[1.0
         {[
           { platform: "facebook", url: "https://facebook.com/saralevents", icon: "f" },
           { platform: "twitter", url: "https://twitter.com/saralevents", icon: "t" },
-          { platform: "linkedin", url: "https://linkedin.com/company/saralevents", icon: "in" },
-          { platform: "instagram", url: "https://instagram.com/saralevents", icon: "ig" },
+          { platform: "linkedin", url: "https://www.linkedin.com/company/nexus-eventers/", icon: "in" },
+          { platform: "instagram", url: " https://www.instagram.com/saral_events_?igsh=dnBxcTVkZmZmbjly", icon: "ig" },
         ].map((social, index) => (
           <button
             key={index}

@@ -45,8 +45,8 @@ export default function Error({
 
         <div className="mt-8 text-sm text-gray-500">
           <p>Need help? Contact us at:</p>
-          <a href="mailto:support@saralevents.com" className="text-yellow-600 hover:underline">
-            support@saralevents.com
+          <a href="mailto:contactus@saralevents.com" className="text-yellow-600 hover:underline">
+          contactus@saralevents.com
           </a>
         </div>
       </div>
