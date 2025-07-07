@@ -149,10 +149,10 @@ useEffect(() => {
   const [hasAnimated, setHasAnimated] = useState(false)
 
   // Pre-define all count hooks to maintain consistent hook order
-  const count1 = useCountUp(5000, 2000, hasAnimated)
+  {/*const count1 = useCountUp(5000, 2000, hasAnimated)
   const count2 = useCountUp(20, 2000, hasAnimated)
   const count3 = useCountUp(10000, 2000, hasAnimated)
-  const count4 = useCountUp(4.8, 2000, hasAnimated)
+  const count4 = useCountUp(4.8, 2000, hasAnimated)*/}
 
   // Ensure client-side rendering
   useEffect(() => {
@@ -1091,7 +1091,7 @@ useEffect(() => {
 
 
         {/* Enhanced Stats Section */}
-        <section
+        {/*<section
           id="stats"
           className="py-20 bg-gradient-to-r from-yellow-600 via-orange-500 to-amber-600 relative overflow-hidden"
         >
@@ -1155,7 +1155,7 @@ useEffect(() => {
               </button>
             </div>
           </div>
-        </section>
+        </section>*/}
 
         {/* FAQ Section */}
         <section id="faq" className="py-20 bg-white">
