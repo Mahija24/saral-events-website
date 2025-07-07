@@ -520,12 +520,13 @@ useEffect(() => {
   
   
 
-  const stats = [
+  { /*  
+    const stats = [
     { number: "5,000+", label: "Events Managed", icon: Users, color: "from-blue-500 to-blue-600", value: count1 },
     { number: "20+", label: "Cities Covered", icon: Globe, color: "from-green-500 to-green-600", value: count2 },
     { number: "10,000", label: "Verified Vendors", icon: Award, color: "from-purple-500 to-purple-600", value: count3 },
     { number: "4.8★", label: "App Rating", icon: Star, color: "from-yellow-500 to-yellow-600", value: count4 },
-  ]
+  ]*/}
 
   const faqs = [
     {
