@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 import { useState, useEffect } from "react"
 import {
   Menu,
@@ -37,6 +36,7 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import QRCode from 'react-qr-code';
 import "swiper/css/pagination";
+import Image from "next/image";
 
 // Add this right after the imports and before the useCountUp hook
 const SafeComponent = ({ children }) => {
@@ -635,6 +635,18 @@ useEffect(() => {
 
   return (
     <SafeComponent>
+      <header className="fixed top-0 left-0 right-0 z-50 shadow-md bg-white">
+        <div className="container mx-auto flex justify-between items-center p-4">
+
+          {/* NAVBAR CODE HERE */}
+          <nav className="hidden md:flex space-x-8">
+            <a href="#features">Features</a>
+            <a href="#categories">Categories</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+        </div>
+      </header>
       <div className="min-h-screen bg-white">
         {/* Navigation */}
         <nav className="bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-yellow-100">
