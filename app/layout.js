@@ -1,24 +1,18 @@
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata = {
   title: "Saral Events - Plan Less, Celebrate More",
-  description:
-    "Your one-stop solution for all event planning needs. Connect with verified vendors, book services instantly, and make your celebrations unforgettable.",
-  keywords:
-    "event planning, wedding planning, vendors, catering, photography, decoration, entertainment, birthday planning, corporate events, engagement planning, anniversary parties, destination weddings, bridal makeup, mehendi artists, music bands, DJs, sound system rental, event venues, banquet halls, party halls, decorators, flower decoration, event organizers, wedding photography, candid photography, videography, lights and sound, event management services, conference planning, seminar planning, festival planning, family functions, event packages, budget-friendly events, luxury wedding planning",
-  authors: [{ name: "Saral Events" }],
-  creator: "Saral Events",
-  publisher: "Saral Events",
-  robots: "index, follow",
+  description: "Your one-stop solution for all event planning needs...",
+  keywords: "event planning, wedding planning, catering, photography, ...",
   openGraph: {
-    title: "Saral Events - Plan Less, Celebrate More",
-    description:
-      "Your one-stop solution for all event planning needs. Connect with verified vendors, book services instantly.",
+    title: "Saral Events",
+    description: "Your one-stop solution for all event planning needs...",
     url: "https://saralevents.com",
     siteName: "Saral Events",
     images: [
       {
-        url: "https://saralevents.com/logo.png", // ✅ Absolute URL (important for Google)
+        url: "/logo.png",
         width: 1200,
         height: 630,
         alt: "Saral Events Logo",
@@ -31,11 +25,8 @@ export const metadata = {
     card: "summary_large_image",
     title: "Saral Events - Plan Less, Celebrate More",
     description: "Your one-stop solution for all event planning needs.",
-    images: ["https://saralevents.com/logo.png"], // ✅ absolute URL
+    images: ["/logo.png"],
   },
-  viewport: "width=device-width, initial-scale=1",
-  themeColor: "#d97706",
-  generator: "Next.js",
 };
 
 export default function RootLayout({ children }) {
@@ -51,10 +42,15 @@ export default function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="format-detection" content="telephone=no" />
+      </head>
+      <body className="antialiased">
+        {children}
 
-        {/* ✅ Schema.org (Organization with logo) */}
-        <script
+        {/* ✅ JSON-LD Schema */}
+        <Script
+          id="schema-org"
           type="application/ld+json"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -65,14 +61,13 @@ export default function RootLayout({ children }) {
               sameAs: [
                 "https://facebook.com/saralevents",
                 "https://www.instagram.com/saral_events_?igsh=dnBxcTVkZmZmbjly",
-                "https://www.linkedin.com/company/yourpage",
-                "https://twitter.com/saraleventshttps://www.linkedin.com/company/nexus-eventers/"
+                "https://www.linkedin.com/company/nexus-eventers/",
+                "https://twitter.com/saralevents"
               ],
             }),
           }}
         />
-      </head>
-      <body className="antialiased">{children}</body>
+      </body>
     </html>
   );
 }
