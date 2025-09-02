@@ -1463,7 +1463,7 @@ useEffect(() => {
       onClick={handleQRScan}
     >
       <QRCode
-        value="https://play.google.com/store/apps/details?id=com.yourapp"
+        value="https://saralevents.com/download"
         size={130}
         fgColor="#000000"
         bgColor="#ffffff"
@@ -1472,6 +1472,81 @@ useEffect(() => {
     </div>
     <p className="text-sm font-semibold text-white tracking-wide">SCAN TO DOWNLOAD</p>
   </div>
+  {/* Popup Modal */}
+{showPopup && (
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
+    <div className="bg-white rounded-2xl p-8 shadow-2xl w-full max-w-lg relative animate-fadeIn">
+      {/* Close Button */}
+      <button
+        onClick={closePopup}
+        className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-xl"
+      >
+        ✖
+      </button>
+
+      {/* Title */}
+      <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">
+        Download Saral Events App
+      </h2>
+      <p className="text-gray-600 text-center mb-8">
+        Choose the app that best suits your role
+      </p>
+
+      {/* Buttons */}
+      <div className="flex flex-col gap-4">
+        {/* User App */}
+        <a
+          href="https://drive.google.com/file/d/1uyukiaXGVsiYq8tkZ8QPNXdhLp8CUFtU/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-3 bg-blue-600 text-white py-4 rounded-xl hover:bg-blue-700 transition text-lg font-semibold shadow-md"
+        >
+          {/* User SVG */}
+          <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clipPath="url(#clip0_user)">
+              <path d="M7 8C8.38071 8 9.5 6.88071 9.5 5.5C9.5 4.11929 8.38071 3 7 3C5.61929 3 4.5 4.11929 4.5 5.5C4.5 6.88071 5.61929 8 7 8Z" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M2.72998 11.8999C3.17622 11.1674 3.80339 10.562 4.55119 10.142C5.29899 9.72186 6.14227 9.50122 6.99998 9.50122C7.85769 9.50122 8.70097 9.72186 9.44877 10.142C10.1966 10.562 10.8237 11.1674 11.27 11.8999" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M7 13.5C10.5899 13.5 13.5 10.5899 13.5 7C13.5 3.41015 10.5899 0.5 7 0.5C3.41015 0.5 0.5 3.41015 0.5 7C0.5 10.5899 3.41015 13.5 7 13.5Z" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_user">
+                <rect width="14" height="14" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+          Download User App
+        </a>
+
+        {/* Vendor App */}
+        <a
+          href="https://drive.google.com/file/d/1ES2LHzlAGF_kvUUoQoEPlo9GX7s7lobo/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-3 bg-green-600 text-white py-4 rounded-xl hover:bg-green-700 transition text-lg font-semibold shadow-md"
+        >
+          {/* Vendor SVG */}
+          <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clipPath="url(#clip0_vendor)">
+              <path d="M1.5 8.5V13C1.5 13.1326 1.55268 13.2598 1.64645 13.3536C1.74021 13.4473 1.86739 13.5 2 13.5H12C12.1326 13.5 12.2598 13.4473 12.3536 13.3536C12.4473 13.2598 12.5 13.1326 12.5 13V8.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 8.5V13.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M1.5 10H8" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M0.5 4L2 0.5H12L13.5 4H0.5Z" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M4.78 4V5C4.78 5.53043 4.56929 6.03914 4.19421 6.41421C3.81914 6.78929 3.31043 7 2.78 7H2.5C1.96957 7 1.46086 6.78929 1.08579 6.41421C0.710714 6.03914 0.5 5.53043 0.5 5V4" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M9.25 4V5C9.25 5.53043 9.03929 6.03914 8.66421 6.41421C8.28914 6.78929 7.78043 7 7.25 7H6.75C6.21957 7 5.71086 6.78929 5.33579 6.41421C4.96071 6.03914 4.75 5.53043 4.75 5V4" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M13.5 4V5C13.5 5.53043 13.2893 6.03914 12.9142 6.41421C12.5391 6.78929 12.0304 7 11.5 7H11.25C10.7196 7 10.2109 6.78929 9.83579 6.41421C9.46071 6.03914 9.25 5.53043 9.25 5V4" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_vendor">
+                <rect width="14" height="14" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+          Download Vendor App
+        </a>
+      </div>
+    </div>
+  </div>
+)}
 
   {/* Store Buttons */}
   <div className="flex flex-col gap-3 justify-center items-center text-center">
