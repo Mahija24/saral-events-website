@@ -845,7 +845,7 @@ useEffect(() => {
         </button>
       </div>
 
-      <div className="flex space-x-8 pt-4">
+      {/* <div className="flex space-x-8 pt-4">
         <div className="text-center">
           <div className="text-2xl font-bold text-white">5K+</div>
           <div className="text-sm text-white/80">Vendors</div>
@@ -858,7 +858,7 @@ useEffect(() => {
           <div className="text-2xl font-bold text-white">4.8★</div>
           <div className="text-sm text-white/80">Rating</div>
         </div>
-      </div>
+      </div> */}
     </div>
 
     {/* QR Code Box */}
