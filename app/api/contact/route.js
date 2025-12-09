@@ -40,7 +40,7 @@ export async function POST(request) {
         <p>Thank you for reaching out to <strong>Saral Events</strong>. We received your message:</p>
         <blockquote>${message}</blockquote>
         <p>We’ll get back to you shortly.</p>
-        <p>📞 +91 77318 42453</p>
+        <p>📞 +91 7815865959</p>
         <p>✨ Plan Less, Celebrate More!</p>
       `,
     };

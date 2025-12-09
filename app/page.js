@@ -566,7 +566,7 @@ useEffect(() => {
     {
       icon: Phone,
       title: "Call Us",
-      details: ["+91 77318 42453"],
+      details: ["+91 7815865959"],
       action: handlePhoneCall,
       color: "from-green-400 to-green-600",
     },
@@ -1344,7 +1344,7 @@ useEffect(() => {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <button
-                      onClick={() => handlePhoneCall("+91 77318 42453")}
+                      onClick={() => handlePhoneCall("+91 7815865959")}
                       className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300 flex items-center justify-center"
                     >
                       <Phone className="mr-2 h-5 w-5" />
@@ -1710,11 +1710,11 @@ useEffect(() => {
       {/* Contact Info */}
       <div className="flex flex-col sm:flex-row items-center gap-4 text-gray-400">
         <button
-          onClick={() => handlePhoneCall("+91 77318 42453")}
+          onClick={() => handlePhoneCall("+91 7815865959")}
           className="flex items-center hover:text-yellow-400 transition-colors group"
         >
           <Phone className="h-4 w-4 mr-2 group-hover:animate-pulse" />
-          <span>+91 77318 42453</span>
+          <span>+91 7815865959</span>
         </button>
         <button
           onClick={() => handleEmail("contactus@saralevents.com")}
